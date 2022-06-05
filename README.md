@@ -1,4 +1,4 @@
-# React Project - Tenzi Game
+# React Project - Quizzical App
 
 Section 4 solo project from [Scrimba's free "Learn React"](https://scrimba.com/learn/learnreact/) course taught by Bob Ziroll.
 
