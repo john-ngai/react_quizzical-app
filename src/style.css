@@ -64,3 +64,33 @@ main {
   background-color: #4D5B9E;
   cursor: pointer;
 }
+
+.question-title {
+  margin: 0;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  color: #293264;
+  padding-bottom: 12px;
+}
+
+.button--option {
+  min-width: 65px;
+  height: 21px;
+  background-color: transparent;
+  border: 1px solid #293264;
+  border-radius: 8px;
+  font-weight: 500;
+  color: #293264;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.button--option:not(:first-child):not(:last-child) {
+  margin-right: 13px;
+}
+
+.line {
+  width: 400px;
+  height: 0px;
+  border-bottom: 1px solid #DBDEF0;
+}
