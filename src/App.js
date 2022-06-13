@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid';
+import Start from './components/Start';
+import Question from './components/Question';
 import './style.css';
 
 export default function App() {
@@ -6,26 +9,54 @@ export default function App() {
   const [page, setPage] = useState('START');
   const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
-    // Get 5 questions from the Open Trivia DB API.
+  // Get 5 questions from the Open Trivia DB API.
+  const getQuestions = () => {
     fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then(res => res.json())
       .then(data => setQuestions(data.results));
-  }, []);
+  }
+
+  useEffect(() => { getQuestions() }, []);
+
+  const sampleQuestion = [{
+    category: "Entertainment: Television",
+    correct_answer: "Screech",
+    difficulty: "easy",
+    incorrect_answers: ['Zack', 'Mr. Belding', 'A.C. Slater'],
+    question: "Which character was played by Dustin Diamond in the sitcom &#039;Saved by the Bell&#039;?",
+    type: "multiple",
+  }];
+
+  const questionElements = questions.map(element => {
+    const { question, correct_answer, incorrect_answers } = element;
+    const options = incorrect_answers;
+    // Add the correct answer to the options arrays.
+    options.push(correct_answer);
+    // Randomize the options array.
+    options.sort(() => Math.random() - 0.5);
+
+    return (
+      <Question
+        question={question}
+        options={options}
+        solution={correct_answer}
+      />
+    );
+  })
 
   return (
     <main>
-      {page === 'START' &&
-        <div className='start-page'>
-          <h1 className='title'>Quizzical</h1>
-          <p className='description'>Some description if needed</p>
-          <button className='button--start'
-            onClick={() => setPage('QUIZ')}
-          >Start Quiz</button>
-        </div>}
+      {page === 'START' && <Start setPage={setPage} />}
 
       {page === 'QUIZ' &&
-        <button onClick={() => setPage('START')}>Go Back</button>
+        <section className='quiz-page'>
+          <button className='button--back'
+            onClick={() => setPage('START')}
+          >Go Back</button>
+          
+          {questionElements}
+          <button>Check Answers</button>
+        </section>
       }
     </main>
   );
