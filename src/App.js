@@ -46,14 +46,13 @@ export default function App() {
 
   return (
     <main>
-      {page === 'START' && <Start setPage={setPage} />}
+      {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
 
       {page === 'QUIZ' &&
         <section className='quiz-page'>
           <button className='button--back'
             onClick={() => setPage('START')}
           >Go Back</button>
-          
           {questionElements}
           <button>Check Answers</button>
         </section>
