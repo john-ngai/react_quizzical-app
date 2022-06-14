@@ -36,16 +36,6 @@ export default function App() {
     );
   })
 
-
-
-
-
-
-
-
-
-
-
   return (
     <main>
       <button className='toggle-start'
@@ -57,7 +47,7 @@ export default function App() {
       {page === 'QUIZ' &&
         <section className='quiz-page'>
           {questionElements}
-          <button>Check Answers</button>
+          <button className='button--check'>Check Answers</button>
         </section>
       }
     </main>
