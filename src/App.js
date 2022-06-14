@@ -18,15 +18,6 @@ export default function App() {
 
   useEffect(() => { getQuestions() }, []);
 
-  const sampleQuestion = [{
-    category: "Entertainment: Television",
-    correct_answer: "Screech",
-    difficulty: "easy",
-    incorrect_answers: ['Zack', 'Mr. Belding', 'A.C. Slater'],
-    question: "Which character was played by Dustin Diamond in the sitcom &#039;Saved by the Bell&#039;?",
-    type: "multiple",
-  }];
-
   const questionElements = questions.map(element => {
     const { question, correct_answer, incorrect_answers } = element;
     const options = incorrect_answers;
@@ -37,6 +28,7 @@ export default function App() {
 
     return (
       <Question
+        key={nanoid()}
         question={question}
         options={options}
         solution={correct_answer}
@@ -44,15 +36,26 @@ export default function App() {
     );
   })
 
+
+
+
+
+
+
+
+
+
+
   return (
     <main>
+      <button className='toggle-start'
+        onClick={() => setPage('START')}
+      >Toggle Start</button>
+
       {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
 
       {page === 'QUIZ' &&
         <section className='quiz-page'>
-          <button className='button--back'
-            onClick={() => setPage('START')}
-          >Go Back</button>
           {questionElements}
           <button>Check Answers</button>
         </section>
