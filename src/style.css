@@ -32,3 +32,9 @@ main {
 
   padding: 0 50px;
 }
+
+.toggle-start {
+  position: absolute;
+  top: 0;
+  left: -100%;
+}
