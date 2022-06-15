@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { nanoid } from 'nanoid';
 import Start from './components/Start';
 import Quiz from './components/Quiz';
 import './style.css';
