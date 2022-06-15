@@ -26,7 +26,7 @@ export default function App() {
 
       {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
 
-      {page === 'QUIZ' && <Quiz />}
+      {page === 'QUIZ' && <Quiz questions={questions}/>}
     </main>
   );
 }
