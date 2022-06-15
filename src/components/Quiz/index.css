@@ -1,0 +1,14 @@
+.button--check {
+  background-color: #4D5B9E;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
+  padding: 11px 22px;
+  border-radius: 10px;
+  border: none;
+  color: #F5F7FB;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+}
