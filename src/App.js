@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import Start from './components/Start';
-import Question from './components/Question';
+import Quiz from './components/Quiz';
 import './style.css';
 
 export default function App() {
@@ -18,24 +18,6 @@ export default function App() {
 
   useEffect(() => { getQuestions() }, []);
 
-  const questionElements = questions.map(element => {
-    const { question, correct_answer, incorrect_answers } = element;
-    const options = incorrect_answers;
-    // Add the correct answer to the options arrays.
-    options.push(correct_answer);
-    // Randomize the options array.
-    options.sort(() => Math.random() - 0.5);
-
-    return (
-      <Question
-        key={nanoid()}
-        question={question}
-        options={options}
-        solution={correct_answer}
-      />
-    );
-  })
-
   return (
     <main>
       <button className='toggle-start'
@@ -44,12 +26,7 @@ export default function App() {
 
       {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
 
-      {page === 'QUIZ' &&
-        <section className='quiz-page'>
-          {questionElements}
-          <button className='button--check'>Check Answers</button>
-        </section>
-      }
+      {page === 'QUIZ' && <Quiz />}
     </main>
   );
 }
