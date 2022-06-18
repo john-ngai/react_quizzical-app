@@ -12,7 +12,13 @@ export default function App() {
   const getQuestions = () => {
     fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then(res => res.json())
-      .then(data => setQuestions(data.results));
+      .then(data => {
+        const formattedData = data.results.map(element => ({
+          ...element,
+          selected: '',
+        }));
+        return setQuestions(formattedData);
+      });
   }
 
   useEffect(() => { getQuestions() }, []);
@@ -25,7 +31,7 @@ export default function App() {
 
       {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
 
-      {page === 'QUIZ' && <Quiz questions={questions}/>}
+      {page === 'QUIZ' && <Quiz questions={questions} />}
     </main>
   );
 }
