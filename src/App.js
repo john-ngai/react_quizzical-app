@@ -1,6 +1,10 @@
+// Packages
 import { useEffect, useState } from 'react';
+import { decode } from 'html-entities';
+// Components
 import Start from './components/Start';
 import Quiz from './components/Quiz';
+// Stylesheet
 import './style.css';
 
 export default function App() {
@@ -13,15 +17,38 @@ export default function App() {
     fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then(res => res.json())
       .then(data => {
-        const formattedData = data.results.map(element => ({
-          ...element,
-          selected: '',
-        }));
-        return setQuestions(formattedData);
+        const questions = data.results.map(element => {
+          const selected = '';
+          let { question, correct_answer, incorrect_answers } = element;  
+          // Convert HTML entities into characters.
+          question = decode(question);
+          correct_answer = decode(correct_answer);
+          incorrect_answers = incorrect_answers.map(answer => decode(answer));
+          // Add & shuffle all answers to the choices array.
+          const choices = incorrect_answers;
+          choices.push(correct_answer);
+          choices.sort(() => Math.random() - 0.5);
+          return { question, correct_answer, choices, selected };
+        });
+        return setQuestions(questions);
       });
   }
 
   useEffect(() => { getQuestions() }, []);
+
+  console.log(questions);
+
+  const updateSelected = (question, choice) => {
+    setQuestions(prev => prev.map(element => {
+      if (element.question === question) {
+        // console.log('element.question === question'); // Remove test code.
+        return ({ ...element, selected: choice });
+      } else {
+        // console.log('element.question !== question'); // Remove test code.
+        return element;
+      }
+    }));
+  }
 
   return (
     <main>
@@ -31,7 +58,13 @@ export default function App() {
 
       {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
 
-      {page === 'QUIZ' && <Quiz questions={questions} />}
+      {
+        page === 'QUIZ' &&
+        <Quiz
+          questions={questions}
+          updateSelected={updateSelected}
+        />
+      }
     </main>
   );
 }
