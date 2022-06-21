@@ -38,6 +38,10 @@
   background-color: #D6DBF5;
 }
 
+.button--option.selected {
+  background-color: #D6DBF5;
+}
+
 .line {
   width: 400px;
   height: 0px;
