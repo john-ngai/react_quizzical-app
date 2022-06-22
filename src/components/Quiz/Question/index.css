@@ -18,7 +18,7 @@
   padding-bottom: 12px;
 }
 
-.button--option {
+.button--option, .button--result {
   min-width: 65px;
   height: 21px;
   background-color: transparent;
@@ -26,11 +26,15 @@
   border-radius: 8px;
   font-weight: 500;
   color: #293264;
-  cursor: pointer;
   margin-bottom: 16px;
 }
 
-.button--option:not(:first-child):not(:last-child) {
+.button--option {
+  cursor: pointer;
+}
+
+.button--option:not(:first-child):not(:last-child),
+.button--result:not(:first-child):not(:last-child) {
   margin-right: 13px;
 }
 
@@ -40,6 +44,17 @@
 
 .button--option.selected {
   background-color: #D6DBF5;
+  border: none;
+}
+
+.button--result.correct {
+  background-color: #94D7A2;
+  border: none;
+}
+
+.button--result.incorrect {
+  background-color: #F8BCBC;
+  opacity: 0.5;
   border: none;
 }
 
