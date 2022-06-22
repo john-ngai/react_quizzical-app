@@ -1,12 +1,13 @@
+// Stylesheets
 import './index.css';
 
 export default function Question(props) {
-  const { question, choices, correct_answer, selected, updateSelected, page } = props
-
+  const { page, updateSelected, question, choices, correct_answer, selected } = props;
+  // Conditional classes for page = 'QUIZ'.
   const quizbuttonClass = (selected, choice) => {
     return selected === choice ? 'button--option selected' : 'button--option';
   }
-
+  // Conditional classes for page = 'ANSWERS'.
   const answersButtonClass = (selected, choice, correct_answer) => {
     if (selected === correct_answer && selected === choice) {
       return 'button--result correct';
