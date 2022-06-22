@@ -39,6 +39,12 @@ main {
   left: -90%;
 }
 
+.toggle-answers {
+  position: absolute;
+  top: 25px;
+  left: -90%;
+}
+
 .button--check {
   background-color: #4D5B9E;
   position: absolute;
