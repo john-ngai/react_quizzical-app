@@ -1,8 +1,10 @@
+// Packages
 import { nanoid } from 'nanoid';
+// Components
 import Question from './Question';
+// Stylesheets
 import './index.css';
 
-// APP > QUIZ
 export default function Quiz(props) {
   const { page, setPage, questions, updateSelected } = props;
 

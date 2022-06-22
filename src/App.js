@@ -4,7 +4,7 @@ import { decode } from 'html-entities';
 // Components
 import Start from './components/Start';
 import Quiz from './components/Quiz';
-// Stylesheet
+// Stylesheets
 import './style.css';
 
 export default function App() {
