@@ -46,8 +46,6 @@ export default function App() {
     }));
   }
 
-  console.log('page =', page); // Remove test code.
-
   return (
     <main>
       <button className='toggle-start'
@@ -65,6 +63,7 @@ export default function App() {
           questions={questions}
           updateSelected={updateSelected}
           page={page}
+          setPage={() => setPage('ANSWERS')}
         />
       }
 
@@ -73,6 +72,10 @@ export default function App() {
         <Quiz
           questions={questions}
           page={page}
+          setPage={() => {
+            getQuestions();
+            setPage('QUIZ');
+          }}
         />
       }
     </main>
