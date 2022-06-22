@@ -4,7 +4,9 @@ import './index.css';
 
 // APP > QUIZ
 export default function Quiz(props) {
-const questionElements = props.questions.map(element => {
+  const { page, setPage, updateSelected } = props;
+
+  const questionElements = props.questions.map(element => {
     const { question, choices, correct_answer, selected } = element;
     // Return each element as a Question component.
     return (
@@ -14,7 +16,8 @@ const questionElements = props.questions.map(element => {
         choices={choices}
         correct_answer={correct_answer}
         selected={selected}
-        updateSelected={props.updateSelected}
+        updateSelected={updateSelected}
+        page={page}
       />
     );
   });
@@ -22,7 +25,20 @@ const questionElements = props.questions.map(element => {
   return (
     <section className='quiz-page'>
       {questionElements}
-      <button className='button--check'>Check Answers</button>
+
+      {
+        page === 'QUIZ' &&
+        <button className='button--check'
+          onClick={setPage}
+        >Check Answers</button>
+      }
+
+      {
+        page === 'ANSWERS' &&
+        <button className='button--check'
+          onClick={setPage}
+        >Play Again</button>
+      }
     </section>
   );
 }
