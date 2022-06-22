@@ -58,18 +58,18 @@ export default function App() {
       {
         page === 'QUIZ' &&
         <Quiz
-          questions={questions}
-          updateSelected={updateSelected}
           page={page}
           setPage={() => setPage('ANSWERS')}
+          questions={questions}
+          updateSelected={updateSelected}
         />
       }
       {
         page === 'ANSWERS' &&
         <Quiz
-          questions={questions}
           page={page}
           setPage={() => newGame()}
+          questions={questions}
         />
       }
     </main>
