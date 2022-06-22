@@ -14,7 +14,7 @@ export default function App() {
 
   // Get 5 questions from the Open Trivia DB API.
   const getQuestions = () => {
-    fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
+    return fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
       .then(res => res.json())
       .then(data => {
         const questions = data.results.map(element => {
@@ -33,9 +33,9 @@ export default function App() {
         return setQuestions(questions);
       });
   }
-
   useEffect(() => { getQuestions() }, []);
 
+  // Change the value of the 'selected' property to the choice that was clicked.
   const updateSelected = (question, choice) => {
     setQuestions(prev => prev.map(element => {
       if (element.question === question) {
@@ -46,10 +46,15 @@ export default function App() {
     }));
   }
 
+  // Set the page to 'QUIZ' after retrieving the new questions.
+  const newGame = () => {
+    return getQuestions()
+      .then(() => setPage('QUIZ'));
+  }
+
   return (
     <main>
       {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
-
       {
         page === 'QUIZ' &&
         <Quiz
@@ -59,16 +64,12 @@ export default function App() {
           setPage={() => setPage('ANSWERS')}
         />
       }
-
       {
         page === 'ANSWERS' &&
         <Quiz
           questions={questions}
           page={page}
-          setPage={() => {
-            getQuestions();
-            setPage('QUIZ');
-          }}
+          setPage={() => newGame()}
         />
       }
     </main>
