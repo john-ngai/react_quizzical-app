@@ -1,9 +1,45 @@
+.quiz-page {
+  margin-top: -75px;
+}
+
 .button--check {
   background-color: #4D5B9E;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   margin-top: 20px;
+  padding: 11px 22px;
+  border-radius: 10px;
+  border: none;
+  color: #F5F7FB;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.results {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  width: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+}
+
+.results p {
+  font-size: 13px;
+  font-weight: bold;
+  color: #293264;
+}
+
+.button--new-game {
+  background-color: #4D5B9E;
+  position: relative;
+  margin: 10px 0;
   padding: 11px 22px;
   border-radius: 10px;
   border: none;
