@@ -40,6 +40,7 @@
 
 .button--option.selected {
   background-color: #D6DBF5;
+  border: none;
 }
 
 .line {
