@@ -19,7 +19,7 @@ export default function App() {
       .then(data => {
         const questions = data.results.map(element => {
           const selected = '';
-          let { question, correct_answer, incorrect_answers } = element;  
+          let { question, correct_answer, incorrect_answers } = element;
           // Convert HTML entities into characters.
           question = decode(question);
           correct_answer = decode(correct_answer);
@@ -36,25 +36,26 @@ export default function App() {
 
   useEffect(() => { getQuestions() }, []);
 
-  console.log(questions);
-
   const updateSelected = (question, choice) => {
     setQuestions(prev => prev.map(element => {
       if (element.question === question) {
-        // console.log('element.question === question'); // Remove test code.
         return ({ ...element, selected: choice });
       } else {
-        // console.log('element.question !== question'); // Remove test code.
         return element;
       }
     }));
   }
+
+  console.log('page =', page); // Remove test code.
 
   return (
     <main>
       <button className='toggle-start'
         onClick={() => setPage('START')}
       >Toggle Start</button>
+      <button className='toggle-answers'
+        onClick={() => setPage('ANSWERS')}
+      >Toggle Answers</button>
 
       {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
 
@@ -63,6 +64,15 @@ export default function App() {
         <Quiz
           questions={questions}
           updateSelected={updateSelected}
+          page={page}
+        />
+      }
+
+      {
+        page === 'ANSWERS' &&
+        <Quiz
+          questions={questions}
+          page={page}
         />
       }
     </main>
