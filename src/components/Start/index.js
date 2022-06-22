@@ -1,3 +1,4 @@
+// Stylesheet
 import './index.css';
 
 export default function Start(props) {
