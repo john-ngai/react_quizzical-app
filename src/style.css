@@ -14,7 +14,7 @@ body {
 
 main {
   width: 600px;
-  height: 600px;
+  height: 650px;
   border-radius: 5px;
   background: url('./images/blob-1.png') right top no-repeat, url('./images/blob-2.png') left bottom no-repeat;
   background-size: 100px;
