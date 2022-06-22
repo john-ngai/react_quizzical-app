@@ -7,10 +7,9 @@ import './index.css';
 
 export default function Quiz(props) {
   const { page, setPage, questions, updateSelected } = props;
-
+  // Format each element as a Question component.
   const questionElements = questions.map(element => {
     const { question, choices, correct_answer, selected } = element;
-    // Return each element as a Question component.
     return (
       <Question
         key={nanoid()}
@@ -23,7 +22,7 @@ export default function Quiz(props) {
       />
     );
   });
-
+  // Store the number of correct answers into a variable.
   let numOfCorrectAnswers = 0;
   questions.forEach(question => {
     if (question.selected === question.correct_answer) {
