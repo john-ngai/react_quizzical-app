@@ -48,13 +48,6 @@ export default function App() {
 
   return (
     <main>
-      <button className='toggle-start'
-        onClick={() => setPage('START')}
-      >Toggle Start</button>
-      <button className='toggle-answers'
-        onClick={() => setPage('ANSWERS')}
-      >Toggle Answers</button>
-
       {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
 
       {
