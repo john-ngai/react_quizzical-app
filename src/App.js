@@ -9,7 +9,7 @@ import './style.css';
 
 export default function App() {
   // States
-  const [page, setPage] = useState('START');
+  const [visualMode, setVisualMode] = useState('START');
   const [questions, setQuestions] = useState([]);
 
   // Get 5 questions from the Open Trivia DB API.
@@ -46,29 +46,29 @@ export default function App() {
     }));
   }
 
-  // Set the page to 'QUIZ' after retrieving the new questions.
+  // Set the visualMode to 'QUIZ' after retrieving the new questions.
   const newGame = () => {
     return getQuestions()
-      .then(() => setPage('QUIZ'));
+      .then(() => setVisualMode('QUIZ'));
   }
 
   return (
     <main>
-      {page === 'START' && <Start setPage={() => setPage('QUIZ')} />}
+      {visualMode === 'START' && <Start setVisualMode={() => setVisualMode('QUIZ')} />}
       {
-        page === 'QUIZ' &&
+        visualMode === 'QUIZ' &&
         <Quiz
-          page={page}
-          setPage={() => setPage('ANSWERS')}
+          visualMode={visualMode}
+          setVisualMode={() => setVisualMode('ANSWERS')}
           questions={questions}
           updateSelected={updateSelected}
         />
       }
       {
-        page === 'ANSWERS' &&
+        visualMode === 'ANSWERS' &&
         <Quiz
-          page={page}
-          setPage={() => newGame()}
+          visualMode={visualMode}
+          setVisualMode={() => newGame()}
           questions={questions}
         />
       }

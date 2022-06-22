@@ -6,14 +6,14 @@ import Question from './Question';
 import './index.css';
 
 export default function Quiz(props) {
-  const { page, setPage, questions, updateSelected } = props;
+  const { visualMode, setVisualMode, questions, updateSelected } = props;
   // Format each element as a Question component.
   const questionElements = questions.map(element => {
     const { question, choices, correct_answer, selected } = element;
     return (
       <Question
         key={nanoid()}
-        page={page}
+        visualMode={visualMode}
         updateSelected={updateSelected}
         question={question}
         choices={choices}
@@ -34,17 +34,17 @@ export default function Quiz(props) {
     <section className='quiz-page'>
       {questionElements}
       {
-        page === 'QUIZ'  &&
+        visualMode === 'QUIZ'  &&
         <button className='button--check'
-          onClick={setPage}
+          onClick={setVisualMode}
         >Check Answers</button>
       }
       {
-        page === 'ANSWERS' &&
+        visualMode === 'ANSWERS' &&
         <div className='results'>
           <p>You scored {numOfCorrectAnswers} of 5 correct answers</p>
           <button className='button--new-game'
-            onClick={setPage}
+            onClick={setVisualMode}
           >Play Again</button>
         </div>
       }
