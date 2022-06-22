@@ -14,12 +14,12 @@ export default function Quiz(props) {
     return (
       <Question
         key={nanoid()}
+        page={page}
+        updateSelected={updateSelected}
         question={question}
         choices={choices}
         correct_answer={correct_answer}
         selected={selected}
-        updateSelected={updateSelected}
-        page={page}
       />
     );
   });
@@ -34,14 +34,12 @@ export default function Quiz(props) {
   return (
     <section className='quiz-page'>
       {questionElements}
-
       {
         page === 'QUIZ'  &&
         <button className='button--check'
           onClick={setPage}
         >Check Answers</button>
       }
-
       {
         page === 'ANSWERS' &&
         <div className='results'>
