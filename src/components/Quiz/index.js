@@ -4,9 +4,9 @@ import './index.css';
 
 // APP > QUIZ
 export default function Quiz(props) {
-  const { page, setPage, updateSelected } = props;
+  const { page, setPage, questions, updateSelected } = props;
 
-  const questionElements = props.questions.map(element => {
+  const questionElements = questions.map(element => {
     const { question, choices, correct_answer, selected } = element;
     // Return each element as a Question component.
     return (
@@ -22,12 +22,19 @@ export default function Quiz(props) {
     );
   });
 
+  let numOfCorrectAnswers = 0;
+  questions.forEach(question => {
+    if (question.selected === question.correct_answer) {
+      numOfCorrectAnswers++;
+    }
+  })
+
   return (
     <section className='quiz-page'>
       {questionElements}
 
       {
-        page === 'QUIZ' &&
+        page === 'QUIZ'  &&
         <button className='button--check'
           onClick={setPage}
         >Check Answers</button>
@@ -35,9 +42,12 @@ export default function Quiz(props) {
 
       {
         page === 'ANSWERS' &&
-        <button className='button--check'
-          onClick={setPage}
-        >Play Again</button>
+        <div className='results'>
+          <p>You scored {numOfCorrectAnswers} of 5 correct answers</p>
+          <button className='button--new-game'
+            onClick={setPage}
+          >Play Again</button>
+        </div>
       }
     </section>
   );
